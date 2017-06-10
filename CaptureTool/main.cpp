@@ -22,9 +22,18 @@
 #include "VMBuffer.h"
 #include "Utils.h"
 
+#import <CoreMIDI/CoreMIDI.h>
+
 #define INVALID_PID -1
 
 static CFMessagePortRef gMessagePort;
+
+MIDIClientRef   theMidiClient;
+MIDIEndpointRef midiOut;
+char pktBuffer[1024];
+MIDIPacketList* pktList = (MIDIPacketList*) pktBuffer;
+MIDIPacket     *pkt;
+Byte            midiDataToSend[] = {0x91, 0x3c, 0x40};
 
 /**
  * Determines which process has a socket with the given endpoints. This returns
@@ -112,27 +121,49 @@ void Handler(u_char *one, const struct pcap_pkthdr *packHead, const u_char *pack
 	const struct ip *ipHeader = (const struct ip *)(etherHeader + 1);
 	
 	// we can only find endpoints for TCP sockets for now
-	if(IPPROTO_TCP == ipHeader->ip_p) {
+	if(IPPROTO_UDP == ipHeader->ip_p) {
 		const struct tcphdr *tcpHeader = (const struct tcphdr *)(ipHeader + 1);
 		
 		// try to find our pid
 		pid_t owningProcess = PIDForEndpoints(ipHeader->ip_src.s_addr, tcpHeader->th_sport, ipHeader->ip_dst.s_addr, tcpHeader->th_dport);
 		
+		char buff[64];
+		unsigned char bytes[4];
+		bytes[0] = ipHeader->ip_src.s_addr & 0xFF;
+		bytes[1] = (ipHeader->ip_src.s_addr >> 8) & 0xFF;
+		bytes[2] = (ipHeader->ip_src.s_addr >> 16) & 0xFF;
+		bytes[3] = (ipHeader->ip_src.s_addr >> 24) & 0xFF;
+		sprintf(buff,"%d.%d.%d.%d", bytes[0], bytes[1], bytes[2], bytes[3]);
+		
+		if(strcmp("192.168.0.101", buff) != 0) {
+			return;
+		}
+
+		sprintf(buff, "%x %x %x", *(packData + 42), *(packData + 43), *(packData + 44));
+
+		midiDataToSend[0] = *(packData + 42);
+		midiDataToSend[1] = *(packData + 43);
+		midiDataToSend[2] = *(packData + 44);
+
+		pkt = MIDIPacketListInit(pktList);
+		pkt = MIDIPacketListAdd(pktList, 1024, pkt, 0, 3, midiDataToSend);
+		MIDIReceived(midiOut, pktList);
+
 		// did we find it?
 		if(INVALID_PID != owningProcess) {			
 			// grab the path
 			char processPath[MAXPATHLEN] = {};
 			proc_pidpath(owningProcess, processPath, sizeof(processPath));
 			
-			SendPacketData(processPath, packHead, packData);
+			SendPacketData(buff, packHead, packData);
 			return;
 		} else {
-			SendPacketData("(unknown TCP)", packHead, packData);
+			SendPacketData(buff, packHead, packData);
 			return;
 		}
 	}
 	
-	SendPacketData("(unknown other)", packHead, packData);
+	//SendPacketData("(unknown other)", packHead, packData);
 }
 
 bool SetupCapture(const char *interface) {
@@ -173,10 +204,15 @@ int main(int argc, char *argv[]) {
 		
 		if (!gMessagePort) return 1;
 	}
-	
+
+	MIDIClientCreate(CFSTR("Magical MIDI"), NULL, NULL,
+					 &theMidiClient);
+	MIDISourceCreate(theMidiClient, CFSTR("Magical MIDI Source"),
+					 &midiOut);
+
 	// FIXME: don't hardcode "en1". Instead we should probably have it passed
 	// to us in argv.
-	if (SetupCapture("en1")) {
+	if (SetupCapture("en0")) {
 		// We need to get notified when this message port gets invalidated because
 		// this is our signal by the parent process that capturing needs to stop.
 		//
@@ -184,6 +220,9 @@ int main(int argc, char *argv[]) {
 		// CFRunLoop and not dispatch_main.
 		CFMessagePortSetInvalidationCallBack(gMessagePort, MessagePortClosed);
 		CFRunLoopRun();
+
+		MIDIEndpointDispose(midiOut);
+		MIDIClientDispose(theMidiClient);
 		return 0;
 	}
 	
