@@ -86,14 +86,21 @@ CFDataRef PacketCallback(CFMessagePortRef local, SInt32 msgid, CFDataRef data, v
 	const char *snifferPath = [snifferPathString fileSystemRepresentation];
 	
 	const char *args[] = { [portName UTF8String], NULL };
-	OSStatus err = AuthorizationExecuteWithPrivileges(authorizationRef, snifferPath, kAuthorizationFlagDefaults, (char * const *)args, NULL);
+	//OSStatus err = AuthorizationExecuteWithPrivileges(authorizationRef, snifferPath, kAuthorizationFlagDefaults, (char * const *)args, NULL);
+
+	captureToolTask = [NSTask launchedTaskWithLaunchPath:snifferPathString arguments:[[NSArray alloc] initWithObjects:portName, nil]];
 	
-	return err == noErr;
+	//return err == noErr;
+	return captureToolTask != nil;
 }
 
 - (void)stopCapture {
 	CFMessagePortInvalidate(messagePort);
 	CFRelease(messagePort);
+	if (captureToolTask != nil) {
+		//[captureToolTask terminate];
+		//captureToolTask = nil;
+	}
 	messagePort = NULL;
 }
 
