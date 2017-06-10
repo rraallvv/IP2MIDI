@@ -75,13 +75,15 @@
 
 	AuthorizationItemSet itemSet = { 1, &item };
 	AuthorizationRef authorizationRef = NULL;
+	/*
 	status = AuthorizationCreate(&itemSet, kAuthorizationEmptyEnvironment,
 								 kAuthorizationFlagDefaults |
 								 kAuthorizationFlagInteractionAllowed |
 								 kAuthorizationFlagExtendRights,
 								 &authorizationRef);
+	 */
 	[capture beginCaptureWithAuthorization:authorizationRef];
-	AuthorizationFree(authorizationRef, kAuthorizationFlagDefaults);
+	//AuthorizationFree(authorizationRef, kAuthorizationFlagDefaults);
 }
 
 #pragma mark -

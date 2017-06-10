@@ -20,6 +20,7 @@
 @interface SnifferCapture : NSObject {
 	SnifferDocument *document;
 	CFMessagePortRef messagePort;
+	NSTask *captureToolTask;
 }
 
 - (id)initWithDocument:(SnifferDocument *)document;
