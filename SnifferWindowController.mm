@@ -18,7 +18,6 @@
 #import "DatabaseLocker.h"
 #import "SnifferCapture.h"
 #import "PrettyCell.h"
-#import <HexFiend/HexFiend.h>
 
 @interface SnifferWindowController ()
 - (void)setupDatabase;
@@ -33,7 +32,7 @@
 	[packetsView setDelegate:self];
 	[packetsView setDataSource:self];
 	[[self window] setDelegate:self];
-	
+
 	if ([[self document] isNewDocument]) {
 		[self launchCaptureTool];
 	}
@@ -43,13 +42,13 @@
 	[capture stopCapture];
 	[capture release];
 	capture = nil;
-	
+
 	sqlite3_finalize(rowCountStmt);
 	rowCountStmt = NULL;
-	
+
 	sqlite3_finalize(packetSelectStmt);
 	packetSelectStmt = NULL;
-	
+
 	sqlite3_finalize(appSelectStmt);
 	appSelectStmt = NULL;
 }
@@ -63,17 +62,17 @@
 
 - (void)launchCaptureTool {
 	capture = [[SnifferCapture alloc] initWithDocument:[self document]];
-	
+
 	NSString *snifferPathString = [capture captureToolPath];
 	const char *snifferPath = [snifferPathString fileSystemRepresentation];
-	
+
 	OSStatus status = noErr;
 	AuthorizationItem item = {
 		"com.alactia.Sniffer.CaptureTool",
 		strlen(snifferPath), (void *)snifferPath,
 		0 /* flags -- must be zero */
 	};
-	
+
 	AuthorizationItemSet itemSet = { 1, &item };
 	AuthorizationRef authorizationRef = NULL;
 	status = AuthorizationCreate(&itemSet, kAuthorizationEmptyEnvironment,
@@ -90,14 +89,15 @@
 - (void)dataChanged {
 	[packetsView reloadData];
 	[[self document] updateChangeCount:NSChangeDone];
+	[packetsView scrollRowToVisible:[packetsView numberOfRows] - 1];
 }
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
 	DatabaseLocker lock([self document]);
-	
+
 	sqlite3_reset(rowCountStmt);
 	sqlite3_step(rowCountStmt);
-	
+
 	return sqlite3_column_int(rowCountStmt, 0);
 }
 
@@ -105,44 +105,41 @@
 	DatabaseLocker lock([self document]);
 	int appRowID;
 	NSString *result;
-	
+
 	sqlite3_bind_int64(packetSelectStmt, 1, row);
 	sqlite3_step(packetSelectStmt);
 	appRowID = sqlite3_column_int64(packetSelectStmt, 0);
 	sqlite3_reset(packetSelectStmt);
-	
+
 	sqlite3_bind_int64(appSelectStmt, 1, appRowID);
 	sqlite3_step(appSelectStmt);
 	result = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(appSelectStmt, 0)];
 	sqlite3_reset(appSelectStmt);
-	
+
 	return result;
 }
 
 - (void)tableViewSelectionDidChange:(NSNotification *)notification {
 	NSInteger row = [[notification object] selectedRow];
-	
 	NSData *data = [[self document] packetData:row];
-	//[dataView setString:[data description]];
-	[dataView setData: data];
 }
 
 - (void)tableView:(NSTableView *)tableView willDisplayCell:(id)cell forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row;
 {
 	NSString *appPath = [cell stringValue];
-	
+
 	//strip off the XXX.app/Contents/MacOS/XXX part of the appPath. FIXME?
 	appPath = [appPath stringByDeletingLastPathComponent];
 	appPath = [appPath stringByDeletingLastPathComponent];
 	appPath = [appPath stringByDeletingLastPathComponent];
 	if (![appPath length]) return;
-	
+
 	NSImage *appIcon = [[NSWorkspace sharedWorkspace] iconForFile:appPath];
 	NSImage *smallIcon = [[[NSImage alloc] initWithSize:NSMakeSize(16.0f, 16.0f)] autorelease];
 	[smallIcon addRepresentation:[appIcon bestRepresentationForRect:NSMakeRect(0, 0, 16.0f, 16.0f) context:nil hints:nil]];
-	
+
 	PrettyCell *prettyCell = (PrettyCell *)cell;
-	[prettyCell setImage: smallIcon];	
+	[prettyCell setImage: smallIcon];
 }
 
 

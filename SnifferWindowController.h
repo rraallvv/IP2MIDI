@@ -15,7 +15,6 @@
 
 #import <Cocoa/Cocoa.h>
 #import <sqlite3.h>
-@class HFTextView;
 @class SnifferCapture;
 
 @interface SnifferWindowController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate, NSWindowDelegate> {
@@ -24,7 +23,6 @@
 	sqlite3_stmt *packetSelectStmt;
 	sqlite3_stmt *appSelectStmt;
 	
-	IBOutlet HFTextView *dataView;
 	IBOutlet NSTableView *packetsView;
 }
 
