@@ -1,25 +1,25 @@
 // Copyright 2011 Joe Ranieri.
 //
-// Sniffer is free software: you can redistribute it and/or modify it under the
+// IP2MIDI is free software: you can redistribute it and/or modify it under the
 // terms of the GNU General Public License as published by the Free Software
 // Foundation, either version 2 of the License, or (at your option) any later
 // version.
 //
-// Sniffer is distributed in the hope that it will be useful, but WITHOUT ANY
+// IP2MIDI is distributed in the hope that it will be useful, but WITHOUT ANY
 // WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
 // FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
 // details.
 //
 // You should have received a copy of the GNU General Public License along with
-// Sniffer. If not, see <http://www.gnu.org/licenses/>.
+// IP2MIDI. If not, see <http://www.gnu.org/licenses/>.
 
-#import "SnifferCapture.h"
+#import "IP2MIDICapture.h"
 #import <pcap.h>
-#import "SnifferDocument.h"
+#import "IP2MIDIDocument.h"
 
-@implementation SnifferCapture
+@implementation IP2MIDICapture
 
-void DissectPacket(SnifferCapture *delegate, SInt32 msgid, NSData *rawData) {
+void DissectPacket(IP2MIDICapture *delegate, SInt32 msgid, NSData *rawData) {
 	const char *bytes = (const char *)[rawData bytes];
 	pcap_pkthdr *header = (pcap_pkthdr *)bytes;
 	const char *dataStart = (const char *)(header + 1);
@@ -34,7 +34,7 @@ void DissectPacket(SnifferCapture *delegate, SInt32 msgid, NSData *rawData) {
 }
 
 CFDataRef PacketCallback(CFMessagePortRef local, SInt32 msgid, CFDataRef data, void *info) {
-	SnifferCapture *delegate = (SnifferCapture *)info;
+	IP2MIDICapture *delegate = (IP2MIDICapture *)info;
 	CFDataRef dataCopy = CFDataCreateCopy(NULL, data);
 	
 	dispatch_async(dispatch_get_global_queue(0, 0), ^(void) {
@@ -45,7 +45,7 @@ CFDataRef PacketCallback(CFMessagePortRef local, SInt32 msgid, CFDataRef data, v
 	return NULL;
 }
 
-- (id)initWithDocument:(SnifferDocument *)theDocument {
+- (id)initWithDocument:(IP2MIDIDocument *)theDocument {
 	if (self = [super init]) {
 		document = [theDocument retain];
 	}
@@ -60,7 +60,7 @@ CFDataRef PacketCallback(CFMessagePortRef local, SInt32 msgid, CFDataRef data, v
 - (NSString *)makePortName {
 	CFUUIDRef uuid = CFUUIDCreate(NULL);
 	CFStringRef uuidString = CFUUIDCreateString(NULL, uuid);
-	NSString *result = [NSString stringWithFormat:@"com.alacatia.Sniffer.%@", uuidString];
+	NSString *result = [NSString stringWithFormat:@"com.alacatia.IP2MIDI.%@", uuidString];
 	
 	CFRelease(uuidString);
 	CFRelease(uuid);
@@ -82,13 +82,13 @@ CFDataRef PacketCallback(CFMessagePortRef local, SInt32 msgid, CFDataRef data, v
 	CFRunLoopAddSource(CFRunLoopGetCurrent(), source, kCFRunLoopDefaultMode);
 	CFRelease(source);
 	
-	NSString *snifferPathString = [self captureToolPath];
-	const char *snifferPath = [snifferPathString fileSystemRepresentation];
+	NSString *IP2MIDIPathString = [self captureToolPath];
+	const char *IP2MIDIPath = [IP2MIDIPathString fileSystemRepresentation];
 	
 	const char *args[] = { [portName UTF8String], NULL };
-	//OSStatus err = AuthorizationExecuteWithPrivileges(authorizationRef, snifferPath, kAuthorizationFlagDefaults, (char * const *)args, NULL);
+	//OSStatus err = AuthorizationExecuteWithPrivileges(authorizationRef, IP2MIDIPath, kAuthorizationFlagDefaults, (char * const *)args, NULL);
 
-	captureToolTask = [NSTask launchedTaskWithLaunchPath:snifferPathString arguments:[[NSArray alloc] initWithObjects:portName, nil]];
+	captureToolTask = [NSTask launchedTaskWithLaunchPath:IP2MIDIPathString arguments:[[NSArray alloc] initWithObjects:portName, nil]];
 	
 	//return err == noErr;
 	return captureToolTask != nil;

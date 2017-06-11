@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Sniffer.xcodeproj">
+      location = "self:/Users/rhodylugo/Desktop/Sniffer/IP2MIDI.xcodeproj">
    </FileRef>
 </Workspace>

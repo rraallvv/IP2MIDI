@@ -9,20 +9,20 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
-				<string>snifferSession</string>
+				<string>IP2MIDISession</string>
 			</array>
 			<key>CFBundleTypeName</key>
-			<string>Sniffer</string>
+			<string>IP2MIDI</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>com.alacatia.Sniffer.Session</string>
+				<string>com.alacatia.IP2MIDI.Session</string>
 			</array>
 			<key>LSTypeIsPackage</key>
 			<true/>
 			<key>NSDocumentClass</key>
-			<string>SnifferDocument</string>
+			<string>IP2MIDIDocument</string>
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
@@ -59,11 +59,11 @@
 				<string>public.data</string>
 			</array>
 			<key>UTTypeIdentifier</key>
-			<string>com.alacatia.Sniffer.Session</string>
+			<string>com.alacatia.IP2MIDI.Session</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>
-				<string>snifferSession</string>
+				<string>IP2MIDISession</string>
 			</dict>
 		</dict>
 	</array>

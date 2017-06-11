@@ -1,31 +1,31 @@
 // Copyright 2011 Joe Ranieri & Zach Fisher.
 //
-// Sniffer is free software: you can redistribute it and/or modify it under the
+// IP2MIDI is free software: you can redistribute it and/or modify it under the
 // terms of the GNU General Public License as published by the Free Software
 // Foundation, either version 2 of the License, or (at your option) any later
 // version.
 //
-// Sniffer is distributed in the hope that it will be useful, but WITHOUT ANY
+// IP2MIDI is distributed in the hope that it will be useful, but WITHOUT ANY
 // WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
 // FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
 // details.
 //
 // You should have received a copy of the GNU General Public License along with
-// Sniffer. If not, see <http://www.gnu.org/licenses/>.
+// IP2MIDI. If not, see <http://www.gnu.org/licenses/>.
 
-#import "SnifferWindowController.h"
-#import "SnifferDocument.h"
+#import "IP2MIDIWindowController.h"
+#import "IP2MIDIDocument.h"
 #import "DatabaseLocker.h"
-#import "SnifferCapture.h"
+#import "IP2MIDICapture.h"
 #import "PrettyCell.h"
 
-@interface SnifferWindowController ()
+@interface IP2MIDIWindowController ()
 - (void)setupDatabase;
 - (void)launchCaptureTool;
 @end
 
 
-@implementation SnifferWindowController
+@implementation IP2MIDIWindowController
 @synthesize menu;
 
 - (void)awakeFromNib {
@@ -94,15 +94,15 @@
 }
 
 - (void)launchCaptureTool {
-	capture = [[SnifferCapture alloc] initWithDocument:[self document]];
+	capture = [[IP2MIDICapture alloc] initWithDocument:[self document]];
 
-	NSString *snifferPathString = [capture captureToolPath];
-	const char *snifferPath = [snifferPathString fileSystemRepresentation];
+	NSString *IP2MIDIPathString = [capture captureToolPath];
+	const char *IP2MIDIPath = [IP2MIDIPathString fileSystemRepresentation];
 
 	OSStatus status = noErr;
 	AuthorizationItem item = {
-		"com.alactia.Sniffer.CaptureTool",
-		strlen(snifferPath), (void *)snifferPath,
+		"com.alactia.IP2MIDI.CaptureTool",
+		strlen(IP2MIDIPath), (void *)IP2MIDIPath,
 		0 /* flags -- must be zero */
 	};
 
