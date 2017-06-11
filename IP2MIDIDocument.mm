@@ -258,6 +258,10 @@ struct pcaprec_hdr_t {
 	[[NSFileManager defaultManager] removeFileAtPath:backupPath handler:nil];
 }
 
+- (BOOL)isDocumentEdited {
+	return NO;
+}
+
 - (NSFileWrapper *)fileWrapperOfType:(NSString *)typeName error:(NSError **)outError {
 	NSFileWrapper *result = [[[NSFileWrapper alloc] initDirectoryWithFileWrappers:nil] autorelease];
 	[result addRegularFileWithContents:[self databaseData] preferredFilename:@"metadata.sqlite"];
