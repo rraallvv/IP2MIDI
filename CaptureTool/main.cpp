@@ -85,18 +85,7 @@ void Handler(u_char *one, const struct pcap_pkthdr *packHead, const u_char *pack
 
 	// we can only find endpoints for TCP sockets for now
 	if(IPPROTO_UDP == ipHeader->ip_p) {
-		char buff[64];
-		unsigned char bytes[4];
-		bytes[0] = ipHeader->ip_src.s_addr & 0xFF;
-		bytes[1] = (ipHeader->ip_src.s_addr >> 8) & 0xFF;
-		bytes[2] = (ipHeader->ip_src.s_addr >> 16) & 0xFF;
-		bytes[3] = (ipHeader->ip_src.s_addr >> 24) & 0xFF;
-		sprintf(buff,"%d.%d.%d.%d", bytes[0], bytes[1], bytes[2], bytes[3]);
-
-		if(strcmp("192.168.0.101", buff) != 0) {
-			return;
-		}
-
+		char buff[32];
 		sprintf(buff, "%x %x %x", *(packData + 42), *(packData + 43), *(packData + 44));
 
 		midiDataToSend[0] = *(packData + 42);
@@ -116,6 +105,19 @@ void Handler(u_char *one, const struct pcap_pkthdr *packHead, const u_char *pack
 bool SetupCapture(const char *interface) {
 	pcap_t *handle = pcap_open_live(interface, BUFSIZ, 1, 2, NULL);
 	if (handle == NULL) return false;
+
+	char filter_exp[] = "udp port 9000";
+	struct bpf_program fp;
+
+	if (pcap_compile(handle, &fp, filter_exp, 0, PCAP_NETMASK_UNKNOWN) == -1) {
+		printf("Couldn't parse filter %s: %s\n", filter_exp, pcap_geterr(handle));
+		return false;
+	}
+
+	if (pcap_setfilter(handle, &fp) == -1) {
+		printf("Couldn't install filter %s: %s\n", filter_exp, pcap_geterr(handle));
+		return false;
+	}
 
 	// We can't run this on the main thread because it'll block, so we need to
 	// set it up on a background thread. I tried quite a bit to get this running
