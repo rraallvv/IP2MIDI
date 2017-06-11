@@ -25,7 +25,7 @@
 - (id)initWithDocument:(IP2MIDIDocument *)document;
 
 - (NSString *)captureToolPath;
-- (BOOL)beginCaptureWithAuthorization:(AuthorizationRef)authorizationRef;
+- (BOOL)beginCapture;
 - (void)stopCapture;
 
 @end

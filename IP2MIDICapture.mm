@@ -54,7 +54,7 @@ CFDataRef PacketCallback(CFMessagePortRef local, SInt32 msgid, CFDataRef data, v
 }
 
 - (NSString *)captureToolPath {
-	return [[NSBundle mainBundle] pathForAuxiliaryExecutable:@"CaptureTool"];
+	return [[NSBundle mainBundle] pathForAuxiliaryExecutable:@"ip2midi-cli"];
 }
 
 - (NSString *)makePortName {
@@ -67,7 +67,7 @@ CFDataRef PacketCallback(CFMessagePortRef local, SInt32 msgid, CFDataRef data, v
 	return result;
 }
 
-- (BOOL)beginCaptureWithAuthorization:(AuthorizationRef)authorizationRef {
+- (BOOL)beginCapture {
 	NSString *portName = [self makePortName];
 	
 	CFMessagePortContext context;
@@ -83,14 +83,9 @@ CFDataRef PacketCallback(CFMessagePortRef local, SInt32 msgid, CFDataRef data, v
 	CFRelease(source);
 	
 	NSString *IP2MIDIPathString = [self captureToolPath];
-	const char *IP2MIDIPath = [IP2MIDIPathString fileSystemRepresentation];
-	
-	const char *args[] = { [portName UTF8String], NULL };
-	//OSStatus err = AuthorizationExecuteWithPrivileges(authorizationRef, IP2MIDIPath, kAuthorizationFlagDefaults, (char * const *)args, NULL);
 
 	captureToolTask = [NSTask launchedTaskWithLaunchPath:IP2MIDIPathString arguments:[[NSArray alloc] initWithObjects:portName, nil]];
 	
-	//return err == noErr;
 	return captureToolTask != nil;
 }
 

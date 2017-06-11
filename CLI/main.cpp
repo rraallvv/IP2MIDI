@@ -171,6 +171,11 @@ bool SetupCapture(const char *interface) {
 	// If I ran it under libdispach directly, it worked fine (I think), but then
 	// I couldn't get notifications about the message port being invalidated.
 	RunBlockThreaded(^(void) {
+		if (gMessagePort == NULL) {
+			printf("Listening to udp port 9000 (Ctr-C to exit).\n");
+		} else {
+			printf("Running in GUI mode.\n");
+		}
 		pcap_loop(handle, -1, Handler, NULL);
 		pcap_close(handle);
 	});

@@ -22,19 +22,19 @@
 		D8B4B7F412C1C21E007BE282 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D8B4B7F312C1C21E007BE282 /* libsqlite3.dylib */; };
 		D8E9D0A612BC904000FF3450 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D8E9D0A512BC904000FF3450 /* main.cpp */; };
 		D8E9D1D512BD59BC00FF3450 /* libpcap.A.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E9D1D412BD59BC00FF3450 /* libpcap.A.dylib */; };
-		D8E9D1DE12BD5A1700FF3450 /* CaptureTool in CopyFiles */ = {isa = PBXBuildFile; fileRef = D8E9D09612BC900400FF3450 /* CaptureTool */; };
+		E46B94261EEDC838000CBD7F /* ip2midi-cli in CopyFiles */ = {isa = PBXBuildFile; fileRef = D8E9D09612BC900400FF3450 /* ip2midi-cli */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		E49706CE1EECA87100D1DF82 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E49706CD1EECA87100D1DF82 /* CoreMIDI.framework */; };
 		E49706D21EECC5AB00D1DF82 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E49706D11EECC5AB00D1DF82 /* Images.xcassets */; };
 		E4D951CE1EECE13700269E95 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E9D22712BD5D2C00FF3450 /* CoreFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		D8E9D1DA12BD59FB00FF3450 /* PBXContainerItemProxy */ = {
+		E46B94291EEDCB64000CBD7F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = D8E9D09512BC900400FF3450;
-			remoteInfo = Sniffer;
+			remoteInfo = ip2midi;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -45,7 +45,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 6;
 			files = (
-				D8E9D1DE12BD5A1700FF3450 /* CaptureTool in CopyFiles */,
+				E46B94261EEDC838000CBD7F /* ip2midi-cli in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,8 +65,8 @@
 		AC4A678812D539ED0051B7B1 /* PrettyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrettyCell.h; sourceTree = "<group>"; };
 		AC4A678912D539ED0051B7B1 /* PrettyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrettyCell.m; sourceTree = "<group>"; };
 		ACA31FD912D2CD9400DF2343 /* HexFiend.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HexFiend.framework; sourceTree = "<group>"; };
-		D8A2271E12C339AF0085FDDE /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
-		D8A2271F12C339AF0085FDDE /* Utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Utils.cpp; sourceTree = "<group>"; };
+		D8A2271E12C339AF0085FDDE /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utils.h; path = ../Utils.h; sourceTree = "<group>"; };
+		D8A2271F12C339AF0085FDDE /* Utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Utils.cpp; path = ../Utils.cpp; sourceTree = "<group>"; };
 		D8A2275412C3BEA80085FDDE /* ChunkedBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChunkedBuffer.h; sourceTree = "<group>"; };
 		D8A2275512C3BEA80085FDDE /* ChunkedBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ChunkedBuffer.cpp; sourceTree = "<group>"; };
 		D8A2284012C6D7990085FDDE /* IP2MIDIDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IP2MIDIDocument.h; sourceTree = "<group>"; };
@@ -80,12 +80,12 @@
 		D8A2292412C716F40085FDDE /* IP2MIDICapture.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = IP2MIDICapture.mm; sourceTree = "<group>"; };
 		D8B4B7E912C1C018007BE282 /* schema.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = schema.sql; sourceTree = "<group>"; };
 		D8B4B7F312C1C21E007BE282 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
-		D8E9D09612BC900400FF3450 /* CaptureTool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CaptureTool; sourceTree = BUILT_PRODUCTS_DIR; };
-		D8E9D0A512BC904000FF3450 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = CaptureTool/main.cpp; sourceTree = "<group>"; };
+		D8E9D09612BC900400FF3450 /* ip2midi-cli */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "ip2midi-cli"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D8E9D0A512BC904000FF3450 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		D8E9D1D412BD59BC00FF3450 /* libpcap.A.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpcap.A.dylib; path = usr/lib/libpcap.A.dylib; sourceTree = SDKROOT; };
 		D8E9D22712BD5D2C00FF3450 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		D8E9D22D12BD5D4100FF3450 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		D8FECD8512BE9A0700AF375F /* VMBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VMBuffer.h; path = CaptureTool/VMBuffer.h; sourceTree = "<group>"; };
+		D8FECD8512BE9A0700AF375F /* VMBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VMBuffer.h; sourceTree = "<group>"; };
 		E49706CD1EECA87100D1DF82 /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
 		E49706D11EECC5AB00D1DF82 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E4D951CC1EECE12900269E95 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -160,7 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				8D1107320486CEB800E47090 /* IP2MIDI.app */,
-				D8E9D09612BC900400FF3450 /* CaptureTool */,
+				D8E9D09612BC900400FF3450 /* ip2midi-cli */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -168,7 +168,7 @@
 		29B97314FDCFA39411CA2CEA /* PacketMuncher */ = {
 			isa = PBXGroup;
 			children = (
-				D8E9D0A012BC901600FF3450 /* CaptureTool */,
+				D8E9D0A012BC901600FF3450 /* CLI */,
 				D8E9D09C12BC900D00FF3450 /* GUI */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
@@ -219,7 +219,7 @@
 			name = GUI;
 			sourceTree = "<group>";
 		};
-		D8E9D0A012BC901600FF3450 /* CaptureTool */ = {
+		D8E9D0A012BC901600FF3450 /* CLI */ = {
 			isa = PBXGroup;
 			children = (
 				D8E9D0A512BC904000FF3450 /* main.cpp */,
@@ -227,7 +227,7 @@
 				D8A2271E12C339AF0085FDDE /* Utils.h */,
 				D8A2271F12C339AF0085FDDE /* Utils.cpp */,
 			);
-			name = CaptureTool;
+			path = CLI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -245,7 +245,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				D8E9D1DB12BD59FB00FF3450 /* PBXTargetDependency */,
+				E46B942A1EEDCB64000CBD7F /* PBXTargetDependency */,
 			);
 			name = IP2MIDI;
 			productInstallPath = "$(HOME)/Applications";
@@ -253,9 +253,9 @@
 			productReference = 8D1107320486CEB800E47090 /* IP2MIDI.app */;
 			productType = "com.apple.product-type.application";
 		};
-		D8E9D09512BC900400FF3450 /* CaptureTool */ = {
+		D8E9D09512BC900400FF3450 /* ip2midi-cli */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D8E9D09D12BC900D00FF3450 /* Build configuration list for PBXNativeTarget "CaptureTool" */;
+			buildConfigurationList = D8E9D09D12BC900D00FF3450 /* Build configuration list for PBXNativeTarget "ip2midi-cli" */;
 			buildPhases = (
 				D8E9D09312BC900400FF3450 /* Sources */,
 				D8E9D09412BC900400FF3450 /* Frameworks */,
@@ -264,9 +264,9 @@
 			);
 			dependencies = (
 			);
-			name = CaptureTool;
+			name = "ip2midi-cli";
 			productName = Sniffer;
-			productReference = D8E9D09612BC900400FF3450 /* CaptureTool */;
+			productReference = D8E9D09612BC900400FF3450 /* ip2midi-cli */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -275,7 +275,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0410;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Alacatia Labs";
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "IP2MIDI" */;
@@ -293,7 +293,7 @@
 			projectRoot = "";
 			targets = (
 				8D1107260486CEB800E47090 /* IP2MIDI */,
-				D8E9D09512BC900400FF3450 /* CaptureTool */,
+				D8E9D09512BC900400FF3450 /* ip2midi-cli */,
 			);
 		};
 /* End PBXProject section */
@@ -339,10 +339,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		D8E9D1DB12BD59FB00FF3450 /* PBXTargetDependency */ = {
+		E46B942A1EEDCB64000CBD7F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D8E9D09512BC900400FF3450 /* CaptureTool */;
-			targetProxy = D8E9D1DA12BD59FB00FF3450 /* PBXContainerItemProxy */;
+			target = D8E9D09512BC900400FF3450 /* ip2midi-cli */;
+			targetProxy = E46B94291EEDCB64000CBD7F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -383,6 +383,7 @@
 				GCC_PREFIX_HEADER = IP2MIDI_Prefix.pch;
 				INFOPLIST_FILE = "IP2MIDI-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.alacatia.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = IP2MIDI;
 			};
 			name = Debug;
@@ -402,6 +403,7 @@
 				GCC_PREFIX_HEADER = IP2MIDI_Prefix.pch;
 				INFOPLIST_FILE = "IP2MIDI-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.alacatia.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = IP2MIDI;
 			};
 			name = Release;
@@ -409,12 +411,28 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -424,11 +442,26 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				SDKROOT = macosx;
 			};
@@ -443,7 +476,7 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INSTALL_PATH = /usr/local/bin;
-				PRODUCT_NAME = CaptureTool;
+				PRODUCT_NAME = "ip2midi-cli";
 			};
 			name = Debug;
 		};
@@ -455,7 +488,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_MODEL_TUNING = G5;
 				INSTALL_PATH = /usr/local/bin;
-				PRODUCT_NAME = IP2MIDI;
+				PRODUCT_NAME = "ip2midi-cli";
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -481,7 +514,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D8E9D09D12BC900D00FF3450 /* Build configuration list for PBXNativeTarget "CaptureTool" */ = {
+		D8E9D09D12BC900D00FF3450 /* Build configuration list for PBXNativeTarget "ip2midi-cli" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D8E9D09812BC900400FF3450 /* Debug */,

@@ -95,28 +95,7 @@
 
 - (void)launchCaptureTool {
 	capture = [[IP2MIDICapture alloc] initWithDocument:[self document]];
-
-	NSString *IP2MIDIPathString = [capture captureToolPath];
-	const char *IP2MIDIPath = [IP2MIDIPathString fileSystemRepresentation];
-
-	OSStatus status = noErr;
-	AuthorizationItem item = {
-		"com.alactia.IP2MIDI.CaptureTool",
-		strlen(IP2MIDIPath), (void *)IP2MIDIPath,
-		0 /* flags -- must be zero */
-	};
-
-	AuthorizationItemSet itemSet = { 1, &item };
-	AuthorizationRef authorizationRef = NULL;
-	/*
-	status = AuthorizationCreate(&itemSet, kAuthorizationEmptyEnvironment,
-								 kAuthorizationFlagDefaults |
-								 kAuthorizationFlagInteractionAllowed |
-								 kAuthorizationFlagExtendRights,
-								 &authorizationRef);
-	 */
-	[capture beginCaptureWithAuthorization:authorizationRef];
-	//AuthorizationFree(authorizationRef, kAuthorizationFlagDefaults);
+	[capture beginCapture];
 }
 
 #pragma mark -
