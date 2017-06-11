@@ -26,6 +26,22 @@
 
 
 @implementation SnifferWindowController
+@synthesize menu;
+
+- (void)awakeFromNib {
+	statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
+
+	NSImage *menuIcon       = [NSImage imageNamed:@"Menu Icon"];
+	NSImage *highlightIcon  = [NSImage imageNamed:@"Menu Icon"];
+	[highlightIcon setTemplate:YES];
+
+	[statusItem setImage:menuIcon];
+	[statusItem setAlternateImage:highlightIcon];
+	[statusItem setHighlightMode:YES];
+	[statusItem setMenu:[self menu]];
+
+	[NSApp setActivationPolicy:NSApplicationActivationPolicyAccessory];
+}
 
 - (void)windowDidLoad {
 	[self setupDatabase];
@@ -38,10 +54,27 @@
 	}
 }
 
+- (IBAction)menuAction:(id)sender {
+	[NSApp setActivationPolicy:NSApplicationActivationPolicyRegular];
+}
+
+-(NSSize)windowWillResize:(NSWindow *)sender toSize:(NSSize)frameSize {
+	frameSize.width = sender.frame.size.width;
+	return frameSize;
+}
+
+- (BOOL)windowShouldClose:(id)sender {
+	[NSApp setActivationPolicy:NSApplicationActivationPolicyAccessory];
+	return NO;
+}
+
 - (void)windowWillClose:(NSNotification *)notification {
 	[capture stopCapture];
 	[capture release];
 	capture = nil;
+
+	[statusItem release];
+	statusItem = nil;
 
 	sqlite3_finalize(rowCountStmt);
 	rowCountStmt = NULL;

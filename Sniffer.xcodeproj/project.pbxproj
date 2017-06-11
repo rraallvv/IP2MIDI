@@ -27,6 +27,7 @@
 		D8E9D22912BD5D3200FF3450 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E9D22712BD5D2C00FF3450 /* CoreFoundation.framework */; };
 		D8E9D22E12BD5D4100FF3450 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E9D22D12BD5D4100FF3450 /* Security.framework */; };
 		E49706CE1EECA87100D1DF82 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E49706CD1EECA87100D1DF82 /* CoreMIDI.framework */; };
+		E49706D21EECC5AB00D1DF82 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E49706D11EECC5AB00D1DF82 /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -134,6 +135,7 @@
 		D8E9D22D12BD5D4100FF3450 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		D8FECD8512BE9A0700AF375F /* VMBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VMBuffer.h; path = CaptureTool/VMBuffer.h; sourceTree = "<group>"; };
 		E49706CD1EECA87100D1DF82 /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
+		E49706D11EECC5AB00D1DF82 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -235,6 +237,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E49706D11EECC5AB00D1DF82 /* Images.xcassets */,
 				8D1107310486CEB800E47090 /* Sniffer-Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
@@ -353,6 +356,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
+				E49706D21EECC5AB00D1DF82 /* Images.xcassets in Resources */,
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
 				D8B4B7EA12C1C018007BE282 /* schema.sql in Resources */,
 				D8A2286112C6F23D0085FDDE /* SnifferWindowController.xib in Resources */,

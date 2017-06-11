@@ -24,6 +24,8 @@
 	sqlite3_stmt *appSelectStmt;
 	
 	IBOutlet NSTableView *packetsView;
+	IBOutlet NSMenu *menu;
+	NSStatusItem *statusItem;
 }
 
 - (void)dataChanged;
