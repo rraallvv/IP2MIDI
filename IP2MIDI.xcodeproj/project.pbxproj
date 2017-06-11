@@ -15,10 +15,10 @@
 		ACA3208312D5340E00DF2343 /* HexFiend.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = ACA31FD912D2CD9400DF2343 /* HexFiend.framework */; };
 		D8A2272012C339AF0085FDDE /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D8A2271F12C339AF0085FDDE /* Utils.cpp */; };
 		D8A2275612C3BEA80085FDDE /* ChunkedBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D8A2275512C3BEA80085FDDE /* ChunkedBuffer.cpp */; };
-		D8A2284212C6D7990085FDDE /* SnifferDocument.mm in Sources */ = {isa = PBXBuildFile; fileRef = D8A2284112C6D7990085FDDE /* SnifferDocument.mm */; };
-		D8A2285B12C6F0040085FDDE /* SnifferWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = D8A2285A12C6F0040085FDDE /* SnifferWindowController.mm */; };
-		D8A2286112C6F23D0085FDDE /* SnifferWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8A2286012C6F23D0085FDDE /* SnifferWindowController.xib */; };
-		D8A2292512C716F40085FDDE /* SnifferCapture.mm in Sources */ = {isa = PBXBuildFile; fileRef = D8A2292412C716F40085FDDE /* SnifferCapture.mm */; };
+		D8A2284212C6D7990085FDDE /* IP2MIDIDocument.mm in Sources */ = {isa = PBXBuildFile; fileRef = D8A2284112C6D7990085FDDE /* IP2MIDIDocument.mm */; };
+		D8A2285B12C6F0040085FDDE /* IP2MIDIWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = D8A2285A12C6F0040085FDDE /* IP2MIDIWindowController.mm */; };
+		D8A2286112C6F23D0085FDDE /* IP2MIDIWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8A2286012C6F23D0085FDDE /* IP2MIDIWindowController.xib */; };
+		D8A2292512C716F40085FDDE /* IP2MIDICapture.mm in Sources */ = {isa = PBXBuildFile; fileRef = D8A2292412C716F40085FDDE /* IP2MIDICapture.mm */; };
 		D8B4B7EA12C1C018007BE282 /* schema.sql in Resources */ = {isa = PBXBuildFile; fileRef = D8B4B7E912C1C018007BE282 /* schema.sql */; };
 		D8B4B7F412C1C21E007BE282 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D8B4B7F312C1C21E007BE282 /* libsqlite3.dylib */; };
 		D8E9D0A612BC904000FF3450 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D8E9D0A512BC904000FF3450 /* main.cpp */; };
@@ -108,8 +108,8 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		8D1107310486CEB800E47090 /* Sniffer-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Sniffer-Info.plist"; sourceTree = "<group>"; };
-		8D1107320486CEB800E47090 /* Sniffer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sniffer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D1107310486CEB800E47090 /* IP2MIDI-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "IP2MIDI-Info.plist"; sourceTree = "<group>"; };
+		8D1107320486CEB800E47090 /* IP2MIDI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IP2MIDI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC4A678812D539ED0051B7B1 /* PrettyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrettyCell.h; sourceTree = "<group>"; };
 		AC4A678912D539ED0051B7B1 /* PrettyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrettyCell.m; sourceTree = "<group>"; };
 		ACA31FD912D2CD9400DF2343 /* HexFiend.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HexFiend.framework; sourceTree = "<group>"; };
@@ -117,15 +117,15 @@
 		D8A2271F12C339AF0085FDDE /* Utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Utils.cpp; sourceTree = "<group>"; };
 		D8A2275412C3BEA80085FDDE /* ChunkedBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChunkedBuffer.h; sourceTree = "<group>"; };
 		D8A2275512C3BEA80085FDDE /* ChunkedBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ChunkedBuffer.cpp; sourceTree = "<group>"; };
-		D8A2284012C6D7990085FDDE /* SnifferDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnifferDocument.h; sourceTree = "<group>"; };
-		D8A2284112C6D7990085FDDE /* SnifferDocument.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SnifferDocument.mm; sourceTree = "<group>"; };
+		D8A2284012C6D7990085FDDE /* IP2MIDIDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IP2MIDIDocument.h; sourceTree = "<group>"; };
+		D8A2284112C6D7990085FDDE /* IP2MIDIDocument.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = IP2MIDIDocument.mm; sourceTree = "<group>"; };
 		D8A2284412C6DC420085FDDE /* SpinLock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpinLock.h; sourceTree = "<group>"; };
-		D8A2285912C6F0040085FDDE /* SnifferWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnifferWindowController.h; sourceTree = "<group>"; };
-		D8A2285A12C6F0040085FDDE /* SnifferWindowController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SnifferWindowController.mm; sourceTree = "<group>"; };
-		D8A2286012C6F23D0085FDDE /* SnifferWindowController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SnifferWindowController.xib; sourceTree = "<group>"; };
+		D8A2285912C6F0040085FDDE /* IP2MIDIWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IP2MIDIWindowController.h; sourceTree = "<group>"; };
+		D8A2285A12C6F0040085FDDE /* IP2MIDIWindowController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = IP2MIDIWindowController.mm; sourceTree = "<group>"; };
+		D8A2286012C6F23D0085FDDE /* IP2MIDIWindowController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IP2MIDIWindowController.xib; sourceTree = "<group>"; };
 		D8A2290612C715D20085FDDE /* DatabaseLocker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseLocker.h; sourceTree = "<group>"; };
-		D8A2292312C716F40085FDDE /* SnifferCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnifferCapture.h; sourceTree = "<group>"; };
-		D8A2292412C716F40085FDDE /* SnifferCapture.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SnifferCapture.mm; sourceTree = "<group>"; };
+		D8A2292312C716F40085FDDE /* IP2MIDICapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IP2MIDICapture.h; sourceTree = "<group>"; };
+		D8A2292412C716F40085FDDE /* IP2MIDICapture.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = IP2MIDICapture.mm; sourceTree = "<group>"; };
 		D8B4B7E912C1C018007BE282 /* schema.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = schema.sql; sourceTree = "<group>"; };
 		D8B4B7F312C1C21E007BE282 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		D8E9D09612BC900400FF3450 /* CaptureTool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CaptureTool; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -167,14 +167,14 @@
 			children = (
 				D8A2275412C3BEA80085FDDE /* ChunkedBuffer.h */,
 				D8A2275512C3BEA80085FDDE /* ChunkedBuffer.cpp */,
-				D8A2284012C6D7990085FDDE /* SnifferDocument.h */,
-				D8A2284112C6D7990085FDDE /* SnifferDocument.mm */,
+				D8A2284012C6D7990085FDDE /* IP2MIDIDocument.h */,
+				D8A2284112C6D7990085FDDE /* IP2MIDIDocument.mm */,
 				D8A2284412C6DC420085FDDE /* SpinLock.h */,
-				D8A2285912C6F0040085FDDE /* SnifferWindowController.h */,
-				D8A2285A12C6F0040085FDDE /* SnifferWindowController.mm */,
+				D8A2285912C6F0040085FDDE /* IP2MIDIWindowController.h */,
+				D8A2285A12C6F0040085FDDE /* IP2MIDIWindowController.mm */,
 				D8A2290612C715D20085FDDE /* DatabaseLocker.h */,
-				D8A2292312C716F40085FDDE /* SnifferCapture.h */,
-				D8A2292412C716F40085FDDE /* SnifferCapture.mm */,
+				D8A2292312C716F40085FDDE /* IP2MIDICapture.h */,
+				D8A2292412C716F40085FDDE /* IP2MIDICapture.mm */,
 				AC4A678812D539ED0051B7B1 /* PrettyCell.h */,
 				AC4A678912D539ED0051B7B1 /* PrettyCell.m */,
 			);
@@ -207,7 +207,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8D1107320486CEB800E47090 /* Sniffer.app */,
+				8D1107320486CEB800E47090 /* IP2MIDI.app */,
 				D8E9D09612BC900400FF3450 /* CaptureTool */,
 			);
 			name = Products;
@@ -238,10 +238,10 @@
 			isa = PBXGroup;
 			children = (
 				E49706D11EECC5AB00D1DF82 /* Images.xcassets */,
-				8D1107310486CEB800E47090 /* Sniffer-Info.plist */,
+				8D1107310486CEB800E47090 /* IP2MIDI-Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
-				D8A2286012C6F23D0085FDDE /* SnifferWindowController.xib */,
+				D8A2286012C6F23D0085FDDE /* IP2MIDIWindowController.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -280,9 +280,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8D1107260486CEB800E47090 /* Sniffer */ = {
+		8D1107260486CEB800E47090 /* IP2MIDI */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "Sniffer" */;
+			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "IP2MIDI" */;
 			buildPhases = (
 				8D1107290486CEB800E47090 /* Resources */,
 				ACA3208D12D5342D00DF2343 /* CopyFiles */,
@@ -299,10 +299,10 @@
 			dependencies = (
 				D8E9D1DB12BD59FB00FF3450 /* PBXTargetDependency */,
 			);
-			name = Sniffer;
+			name = IP2MIDI;
 			productInstallPath = "$(HOME)/Applications";
 			productName = PacketMuncher;
-			productReference = 8D1107320486CEB800E47090 /* Sniffer.app */;
+			productReference = 8D1107320486CEB800E47090 /* IP2MIDI.app */;
 			productType = "com.apple.product-type.application";
 		};
 		D8E9D09512BC900400FF3450 /* CaptureTool */ = {
@@ -330,7 +330,7 @@
 				LastUpgradeCheck = 0410;
 				ORGANIZATIONNAME = "Alacatia Labs";
 			};
-			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Sniffer" */;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "IP2MIDI" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
@@ -344,7 +344,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8D1107260486CEB800E47090 /* Sniffer */,
+				8D1107260486CEB800E47090 /* IP2MIDI */,
 				D8E9D09512BC900400FF3450 /* CaptureTool */,
 			);
 		};
@@ -359,7 +359,7 @@
 				E49706D21EECC5AB00D1DF82 /* Images.xcassets in Resources */,
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
 				D8B4B7EA12C1C018007BE282 /* schema.sql in Resources */,
-				D8A2286112C6F23D0085FDDE /* SnifferWindowController.xib in Resources */,
+				D8A2286112C6F23D0085FDDE /* IP2MIDIWindowController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,9 +372,9 @@
 			files = (
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				D8A2275612C3BEA80085FDDE /* ChunkedBuffer.cpp in Sources */,
-				D8A2284212C6D7990085FDDE /* SnifferDocument.mm in Sources */,
-				D8A2285B12C6F0040085FDDE /* SnifferWindowController.mm in Sources */,
-				D8A2292512C716F40085FDDE /* SnifferCapture.mm in Sources */,
+				D8A2284212C6D7990085FDDE /* IP2MIDIDocument.mm in Sources */,
+				D8A2285B12C6F0040085FDDE /* IP2MIDIWindowController.mm in Sources */,
+				D8A2292512C716F40085FDDE /* IP2MIDICapture.mm in Sources */,
 				AC4A678A12D539ED0051B7B1 /* PrettyCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -431,10 +431,10 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Sniffer_Prefix.pch;
-				INFOPLIST_FILE = "Sniffer-Info.plist";
+				GCC_PREFIX_HEADER = IP2MIDI_Prefix.pch;
+				INFOPLIST_FILE = "IP2MIDI-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
-				PRODUCT_NAME = Sniffer;
+				PRODUCT_NAME = IP2MIDI;
 			};
 			name = Debug;
 		};
@@ -449,10 +449,10 @@
 				);
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Sniffer_Prefix.pch;
-				INFOPLIST_FILE = "Sniffer-Info.plist";
+				GCC_PREFIX_HEADER = IP2MIDI_Prefix.pch;
+				INFOPLIST_FILE = "IP2MIDI-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
-				PRODUCT_NAME = Sniffer;
+				PRODUCT_NAME = IP2MIDI;
 			};
 			name = Release;
 		};
@@ -505,7 +505,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_MODEL_TUNING = G5;
 				INSTALL_PATH = /usr/local/bin;
-				PRODUCT_NAME = Sniffer;
+				PRODUCT_NAME = IP2MIDI;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -513,7 +513,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "Sniffer" */ = {
+		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "IP2MIDI" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4B08A954540054247B /* Debug */,
@@ -522,7 +522,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Sniffer" */ = {
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "IP2MIDI" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
