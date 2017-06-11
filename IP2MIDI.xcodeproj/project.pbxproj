@@ -12,7 +12,6 @@
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		AC4A678A12D539ED0051B7B1 /* PrettyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC4A678912D539ED0051B7B1 /* PrettyCell.m */; };
-		ACA3208312D5340E00DF2343 /* HexFiend.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = ACA31FD912D2CD9400DF2343 /* HexFiend.framework */; };
 		D8A2272012C339AF0085FDDE /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D8A2271F12C339AF0085FDDE /* Utils.cpp */; };
 		D8A2275612C3BEA80085FDDE /* ChunkedBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D8A2275512C3BEA80085FDDE /* ChunkedBuffer.cpp */; };
 		D8A2284212C6D7990085FDDE /* IP2MIDIDocument.mm in Sources */ = {isa = PBXBuildFile; fileRef = D8A2284112C6D7990085FDDE /* IP2MIDIDocument.mm */; };
@@ -40,52 +39,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		ACA3200112D2D48200DF2343 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "Users/zfisher/XCode Projects/Sniffer/HexFiend.framework";
-			dstSubfolderSpec = 10;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		ACA3202D12D2D4FA00DF2343 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = HexFiend.framework;
-			dstSubfolderSpec = 7;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		ACA3203812D2D77600DF2343 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				ACA3208312D5340E00DF2343 /* HexFiend.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		ACA3203B12D2DB2100DF2343 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		ACA3208D12D5342D00DF2343 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "Users/zfisher/XCode Projects/Sniffer/HexFiend.framework";
-			dstSubfolderSpec = 10;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D8E9D1F612BD5A2B00FF3450 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -285,14 +238,9 @@
 			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "IP2MIDI" */;
 			buildPhases = (
 				8D1107290486CEB800E47090 /* Resources */,
-				ACA3208D12D5342D00DF2343 /* CopyFiles */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
-				ACA3200112D2D48200DF2343 /* CopyFiles */,
-				ACA3202D12D2D4FA00DF2343 /* CopyFiles */,
-				ACA3203812D2D77600DF2343 /* CopyFiles */,
 				D8E9D1F612BD5A2B00FF3450 /* CopyFiles */,
-				ACA3203B12D2DB2100DF2343 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -422,6 +370,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -442,6 +391,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
