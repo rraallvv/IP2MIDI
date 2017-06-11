@@ -32,9 +32,43 @@ MIDIEndpointRef midiOut;
 char pktBuffer[1024];
 MIDIPacketList* pktList = (MIDIPacketList*) pktBuffer;
 MIDIPacket     *pkt;
-Byte            midiDataToSend[] = {0x91, 0x3c, 0x40};
 
 static volatile int keepRunning = 1;
+
+/* 4 bytes IP address */
+typedef struct ip_address{
+	u_char byte1;
+	u_char byte2;
+	u_char byte3;
+	u_char byte4;
+}ip_address;
+
+/* IPv4 header */
+typedef struct ip_header{
+	u_char  ver_ihl;        // Version (4 bits) + Internet header length (4 bits)
+	u_char  tos;            // Type of service
+	u_short tlen;           // Total length
+	u_short identification; // Identification
+	u_short flags_fo;       // Flags (3 bits) + Fragment offset (13 bits)
+	u_char  ttl;            // Time to live
+	u_char  proto;          // Protocol
+	u_short crc;            // Header checksum
+	ip_address  saddr;      // Source address
+	ip_address  daddr;      // Destination address
+	u_int   op_pad;         // Option + Padding
+}ip_header;
+
+/* UDP header*/
+typedef struct udp_header{
+	u_short sport;          // Source port
+	u_short dport;          // Destination port
+	u_short len;            // Datagram length
+	u_short crc;            // Checksum
+	u_char  data;
+}udp_header;
+
+/* UDP emplty package length */
+u_int udp_empty_length = 8;
 
 // Funtion prototypes
 void Handler(u_char *one, const struct pcap_pkthdr *packHead, const u_char *packData);
@@ -83,20 +117,31 @@ void Handler(u_char *one, const struct pcap_pkthdr *packHead, const u_char *pack
 	const struct ether_header *etherHeader = (const struct ether_header *)packData;
 	const struct ip *ipHeader = (const struct ip *)(etherHeader + 1);
 
-	// we can only find endpoints for TCP sockets for now
+	// we can only find endpoints for UDP sockets for now
 	if(IPPROTO_UDP == ipHeader->ip_p) {
-		char buff[32];
-		sprintf(buff, "%x %x %x", *(packData + 42), *(packData + 43), *(packData + 44));
+		ip_header *ih;
+		udp_header *uh;
+		u_int ip_len;
 
-		midiDataToSend[0] = *(packData + 42);
-		midiDataToSend[1] = *(packData + 43);
-		midiDataToSend[2] = *(packData + 44);
+		/* retireve the position of the ip header */
+		ih = (ip_header *) (packData + 14); //length of ethernet header
+
+		/* retireve the position of the udp header */
+		ip_len = (ih->ver_ihl & 0xf) * 4;
+		uh = (udp_header *) ((u_char*)ih + ip_len);
+
+		int length = OSSwapInt16(uh->len) - udp_empty_length;
+
+		char buff[32];
+		u_char *pdata = &(uh->data);
 
 		pkt = MIDIPacketListInit(pktList);
-		pkt = MIDIPacketListAdd(pktList, 1024, pkt, 0, 3, midiDataToSend);
+		pkt = MIDIPacketListAdd(pktList, 1024, pkt, 0, length, pdata);
 		MIDIReceived(midiOut, pktList);
 
-		printf("%s\n", buff);
+		for (int i = 0; i < length; i++) {
+			sprintf(buff + i * 3, "%02x:", pdata[i]);
+		}
 
 		SendPacketData(buff, packHead, packData);
 	}
