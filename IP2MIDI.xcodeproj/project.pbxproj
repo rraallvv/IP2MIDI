@@ -10,7 +10,6 @@
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
-		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		AC4A678A12D539ED0051B7B1 /* PrettyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC4A678912D539ED0051B7B1 /* PrettyCell.m */; };
 		D8A2272012C339AF0085FDDE /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D8A2271F12C339AF0085FDDE /* Utils.cpp */; };
 		D8A2275612C3BEA80085FDDE /* ChunkedBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D8A2275512C3BEA80085FDDE /* ChunkedBuffer.cpp */; };
@@ -22,10 +21,11 @@
 		D8B4B7F412C1C21E007BE282 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D8B4B7F312C1C21E007BE282 /* libsqlite3.dylib */; };
 		D8E9D0A612BC904000FF3450 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D8E9D0A512BC904000FF3450 /* main.cpp */; };
 		D8E9D1D512BD59BC00FF3450 /* libpcap.A.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E9D1D412BD59BC00FF3450 /* libpcap.A.dylib */; };
+		E4654D0C1EEDDDDF00664A72 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4654D0A1EEDDDD600664A72 /* Cocoa.framework */; };
+		E4654D0D1EEDDEF700664A72 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4654D0A1EEDDDD600664A72 /* Cocoa.framework */; };
 		E46B94261EEDC838000CBD7F /* ip2midi-cli in CopyFiles */ = {isa = PBXBuildFile; fileRef = D8E9D09612BC900400FF3450 /* ip2midi-cli */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		E49706CE1EECA87100D1DF82 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E49706CD1EECA87100D1DF82 /* CoreMIDI.framework */; };
 		E49706D21EECC5AB00D1DF82 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E49706D11EECC5AB00D1DF82 /* Images.xcassets */; };
-		E4D951CE1EECE13700269E95 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E9D22712BD5D2C00FF3450 /* CoreFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,20 +53,15 @@
 
 /* Begin PBXFileReference section */
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
-		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		1DDD58150DA1D0A300B32029 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		256AC3F00F4B6AF500CF3369 /* IP2MIDI_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IP2MIDI_Prefix.pch; sourceTree = "<group>"; };
-		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
-		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = GUI/main.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* IP2MIDI-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "IP2MIDI-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* IP2MIDI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IP2MIDI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC4A678812D539ED0051B7B1 /* PrettyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrettyCell.h; sourceTree = "<group>"; };
 		AC4A678912D539ED0051B7B1 /* PrettyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrettyCell.m; sourceTree = "<group>"; };
-		ACA31FD912D2CD9400DF2343 /* HexFiend.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HexFiend.framework; sourceTree = "<group>"; };
-		D8A2271E12C339AF0085FDDE /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utils.h; path = ../Utils.h; sourceTree = "<group>"; };
-		D8A2271F12C339AF0085FDDE /* Utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Utils.cpp; path = ../Utils.cpp; sourceTree = "<group>"; };
+		D8A2271E12C339AF0085FDDE /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		D8A2271F12C339AF0085FDDE /* Utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Utils.cpp; sourceTree = "<group>"; };
 		D8A2275412C3BEA80085FDDE /* ChunkedBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChunkedBuffer.h; sourceTree = "<group>"; };
 		D8A2275512C3BEA80085FDDE /* ChunkedBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ChunkedBuffer.cpp; sourceTree = "<group>"; };
 		D8A2284012C6D7990085FDDE /* IP2MIDIDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IP2MIDIDocument.h; sourceTree = "<group>"; };
@@ -83,12 +78,10 @@
 		D8E9D09612BC900400FF3450 /* ip2midi-cli */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "ip2midi-cli"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8E9D0A512BC904000FF3450 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		D8E9D1D412BD59BC00FF3450 /* libpcap.A.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpcap.A.dylib; path = usr/lib/libpcap.A.dylib; sourceTree = SDKROOT; };
-		D8E9D22712BD5D2C00FF3450 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
-		D8E9D22D12BD5D4100FF3450 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		D8FECD8512BE9A0700AF375F /* VMBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VMBuffer.h; sourceTree = "<group>"; };
+		E4654D0A1EEDDDD600664A72 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		E49706CD1EECA87100D1DF82 /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
 		E49706D11EECC5AB00D1DF82 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		E4D951CC1EECE12900269E95 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,7 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+				E4654D0C1EEDDDDF00664A72 /* Cocoa.framework in Frameworks */,
 				D8B4B7F412C1C21E007BE282 /* libsqlite3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -105,7 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E4D951CE1EECE13700269E95 /* CoreFoundation.framework in Frameworks */,
+				E4654D0D1EEDDEF700664A72 /* Cocoa.framework in Frameworks */,
 				E49706CE1EECA87100D1DF82 /* CoreMIDI.framework in Frameworks */,
 				D8E9D1D512BD59BC00FF3450 /* libpcap.A.dylib in Frameworks */,
 			);
@@ -131,29 +124,7 @@
 				AC4A678912D539ED0051B7B1 /* PrettyCell.m */,
 			);
 			name = Classes;
-			sourceTree = "<group>";
-		};
-		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
-				D8E9D1D412BD59BC00FF3450 /* libpcap.A.dylib */,
-				D8E9D22712BD5D2C00FF3450 /* CoreFoundation.framework */,
-				D8E9D22D12BD5D4100FF3450 /* Security.framework */,
-				D8B4B7F312C1C21E007BE282 /* libsqlite3.dylib */,
-				ACA31FD912D2CD9400DF2343 /* HexFiend.framework */,
-			);
-			name = "Linked Frameworks";
-			sourceTree = "<group>";
-		};
-		1058C7A2FEA54F0111CA2CBB /* Other Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
-				13E42FB307B3F0F600E4EEF1 /* CoreData.framework */,
-				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
-			);
-			name = "Other Frameworks";
+			path = GUI;
 			sourceTree = "<group>";
 		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
@@ -201,10 +172,10 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E4D951CC1EECE12900269E95 /* Foundation.framework */,
+				E4654D0A1EEDDDD600664A72 /* Cocoa.framework */,
 				E49706CD1EECA87100D1DF82 /* CoreMIDI.framework */,
-				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
-				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
+				D8E9D1D412BD59BC00FF3450 /* libpcap.A.dylib */,
+				D8B4B7F312C1C21E007BE282 /* libsqlite3.dylib */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
