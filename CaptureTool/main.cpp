@@ -15,10 +15,8 @@
 
 #include <CoreFoundation/CoreFoundation.h>
 #include <pcap.h>
-#include <libproc.h>
 #include <net/ethernet.h>
 #include <netinet/ip.h>
-#include <netinet/tcp.h>
 #include "VMBuffer.h"
 #include "Utils.h"
 
@@ -38,53 +36,11 @@ Byte            midiDataToSend[] = {0x91, 0x3c, 0x40};
 
 static volatile int keepRunning = 1;
 
-/**
- * Determines which process has a socket with the given endpoints. This returns
- * the first process found, or INVALID_PID upon failure.
- *
- * CURRENTLY ONLY HANDLES TCP/IPv4 PACKETS!
- */
-pid_t PIDForEndpoints(in_addr_t sourceAddress, int sourcePort, in_addr_t destAddress, int destPort) {
-	// We need to call proc_listpids once to get the size of the required buffer,
-	// then again to get the actual list.
-	static VMBuffer<pid_t> pidBuffer;
-	pidBuffer.Grow(proc_listpids(PROC_ALL_PIDS, 0, NULL, 0));
-	int pidCount = proc_listpids(PROC_ALL_PIDS, 0, pidBuffer.Data(), pidBuffer.Size()) / sizeof(pid_t);
-
-	for(int i = 0; i < pidCount; i++) {
-		pid_t pid = pidBuffer[i];
-
-		// We need to call proc_pidinfo once to get the size of the required buffer,
-		// then again to get the actual list.
-		static VMBuffer<proc_fdinfo> fdBuffer;
-		fdBuffer.Grow(proc_pidinfo(pid, PROC_PIDLISTFDS, 0, NULL, 0));
-		int fdCount = proc_pidinfo(pid, PROC_PIDLISTFDS, 0, fdBuffer.Data(), fdBuffer.Size()) / sizeof(struct proc_fdinfo);
-
-		for(int j = 0; j < fdCount; j++) {
-			// only interested in sockets
-			if(fdBuffer[j].proc_fdtype != PROX_FDTYPE_SOCKET) continue;
-
-			// get the socket's info
-			socket_fdinfo finfo;
-			proc_pidfdinfo(pid, fdBuffer[j].proc_fd, PROC_PIDFDSOCKETINFO, &finfo, sizeof(finfo));
-
-			// figure out this file's endpoints (holy nesting!)
-			int fdDestPort = finfo.psi.soi_proto.pri_in.insi_fport;
-			in_addr_t fdDestAddress = finfo.psi.soi_proto.pri_in.insi_faddr.ina_46.i46a_addr4.s_addr;
-			int fdSourcePort = finfo.psi.soi_proto.pri_in.insi_lport;
-			in_addr_t fdSourceAddress = finfo.psi.soi_proto.pri_in.insi_laddr.ina_46.i46a_addr4.s_addr;
-
-			// see if this is our guy
-			if((sourceAddress == fdSourceAddress && sourcePort == fdSourcePort && destAddress == fdDestAddress && destPort == fdDestPort) ||
-			   (sourceAddress == fdDestAddress && sourcePort == fdDestPort && destAddress == fdSourceAddress && destPort == fdSourcePort)) {
-				return pid;
-			}
-
-		}
-	}
-
-	return INVALID_PID;
-}
+// Funtion prototypes
+void Handler(u_char *one, const struct pcap_pkthdr *packHead, const u_char *packData);
+bool SetupCapture(const char *interface);
+void MessagePortClosed(CFMessagePortRef ms, void *info);
+void InterruptionHandler(int dummy);
 
 /**
  * Sends information that has been gathered about a packet to the GUI tool on the
@@ -129,11 +85,6 @@ void Handler(u_char *one, const struct pcap_pkthdr *packHead, const u_char *pack
 
 	// we can only find endpoints for TCP sockets for now
 	if(IPPROTO_UDP == ipHeader->ip_p) {
-		const struct tcphdr *tcpHeader = (const struct tcphdr *)(ipHeader + 1);
-
-		// try to find our pid
-		pid_t owningProcess = PIDForEndpoints(ipHeader->ip_src.s_addr, tcpHeader->th_sport, ipHeader->ip_dst.s_addr, tcpHeader->th_dport);
-
 		char buff[64];
 		unsigned char bytes[4];
 		bytes[0] = ipHeader->ip_src.s_addr & 0xFF;
@@ -158,21 +109,8 @@ void Handler(u_char *one, const struct pcap_pkthdr *packHead, const u_char *pack
 
 		printf("%s\n", buff);
 
-		// did we find it?
-		if(INVALID_PID != owningProcess) {
-			// grab the path
-			char processPath[MAXPATHLEN] = {};
-			proc_pidpath(owningProcess, processPath, sizeof(processPath));
-
-			//SendPacketData(buff, packHead, packData);
-			return;
-		} else {
-			SendPacketData(buff, packHead, packData);
-			return;
-		}
+		SendPacketData(buff, packHead, packData);
 	}
-
-	//SendPacketData("(unknown other)", packHead, packData);
 }
 
 bool SetupCapture(const char *interface) {
@@ -202,7 +140,7 @@ void MessagePortClosed(CFMessagePortRef ms, void *info) {
 	CFRunLoopStop(CFRunLoopGetCurrent());
 }
 
-void intHandler(int dummy) {
+void InterruptionHandler(int dummy) {
 	keepRunning = 0;
 }
 
@@ -235,7 +173,7 @@ int main(int argc, char *argv[]) {
 			CFMessagePortSetInvalidationCallBack(gMessagePort, MessagePortClosed);
 			CFRunLoopRun();
 		} else {
-			signal(SIGINT, intHandler);
+			signal(SIGINT, InterruptionHandler);
 			while (keepRunning);
 		}
 
