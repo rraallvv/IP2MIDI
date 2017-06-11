@@ -14,7 +14,6 @@
 // IP2MIDI. If not, see <http://www.gnu.org/licenses/>.
 
 #import <Cocoa/Cocoa.h>
-#import <Security/Security.h>
 @class IP2MIDIDocument;
 
 @interface IP2MIDICapture : NSObject {
