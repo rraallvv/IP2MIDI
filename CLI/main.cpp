@@ -18,7 +18,7 @@
 #include <net/ethernet.h>
 #include <netinet/ip.h>
 #include "VMBuffer.h"
-#include "Utils.h"
+#include "queue.h"
 
 #import <CoreMIDI/CoreMIDI.h>
 #include <signal.h>
@@ -26,6 +26,7 @@
 #define INVALID_PID -1
 
 static CFMessagePortRef gMessagePort;
+static pcap_t *handle;
 
 MIDIClientRef   theMidiClient;
 MIDIEndpointRef midiOut;
@@ -71,10 +72,11 @@ typedef struct udp_header{
 u_int udp_empty_length = 8;
 
 // Funtion prototypes
-void Handler(u_char *one, const struct pcap_pkthdr *packHead, const u_char *packData);
+void CaptureHandler(u_char *one, const struct pcap_pkthdr *packHead, const u_char *packData);
 bool SetupCapture(const char *interface);
 void MessagePortClosed(CFMessagePortRef ms, void *info);
 void InterruptionHandler(int dummy);
+void *CaptureThread(void *arg);
 
 /**
  * Sends information that has been gathered about a packet to the GUI tool on the
@@ -87,10 +89,6 @@ void InterruptionHandler(int dummy);
  */
 static void SendPacketData(const char *appPath, const struct pcap_pkthdr *packHead, const u_char *packData)
 {
-	if (gMessagePort == NULL) {
-		return;
-	}
-
 	static SInt32 msgid;
 	static VMBuffer<UInt8> messageBuffer;
 	messageBuffer.Grow(sizeof(pcap_pkthdr) + packHead->caplen + strlen(appPath) + 1);
@@ -113,7 +111,7 @@ static void SendPacketData(const char *appPath, const struct pcap_pkthdr *packHe
 /**
  * The libpcap callback function. Invoked every time a packet is sent/received.
  */
-void Handler(u_char *one, const struct pcap_pkthdr *packHead, const u_char *packData) {
+void CaptureHandler(u_char *one, const struct pcap_pkthdr *packHead, const u_char *packData) {
 	const struct ether_header *etherHeader = (const struct ether_header *)packData;
 	const struct ip *ipHeader = (const struct ip *)(etherHeader + 1);
 
@@ -132,23 +130,39 @@ void Handler(u_char *one, const struct pcap_pkthdr *packHead, const u_char *pack
 
 		int length = OSSwapInt16(uh->len) - udp_empty_length;
 
-		char buff[32];
 		u_char *pdata = &(uh->data);
 
 		pkt = MIDIPacketListInit(pktList);
 		pkt = MIDIPacketListAdd(pktList, 1024, pkt, 0, length, pdata);
 		MIDIReceived(midiOut, pktList);
 
-		for (int i = 0; i < length; i++) {
-			sprintf(buff + i * 3, "%02x:", pdata[i]);
-		}
+		if (gMessagePort != NULL) {
+			char buff[32];
 
-		SendPacketData(buff, packHead, packData);
+			for (int i = 0; i < length; i++) {
+				sprintf(buff + i * 3, "%02x:", pdata[i]);
+			}
+
+			SendPacketData(buff, packHead, packData);
+		}
 	}
 }
 
+const int buffer_size = 10;
+
+void *CaptureThread(void *arg) {
+	if (gMessagePort == NULL) {
+		printf("Listening to udp port 9000 (Ctr-C to exit).\n");
+	} else {
+		printf("Running in GUI mode.\n");
+	}
+	pcap_loop(handle, -1, CaptureHandler, NULL);
+	pcap_close(handle);
+	return NULL;
+}
+
 bool SetupCapture(const char *interface) {
-	pcap_t *handle = pcap_open_live(interface, BUFSIZ, 1, 2, NULL);
+	handle = pcap_open_live(interface, BUFSIZ, 1, 2, NULL);
 	if (handle == NULL) return false;
 
 	char filter_exp[] = "udp port 9000";
@@ -164,21 +178,13 @@ bool SetupCapture(const char *interface) {
 		return false;
 	}
 
-	// We can't run this on the main thread because it'll block, so we need to
-	// set it up on a background thread. I tried quite a bit to get this running
-	// under a CFRunloop using CFFileDescriptorRef, but it just wouldn't work.
-	//
-	// If I ran it under libdispach directly, it worked fine (I think), but then
-	// I couldn't get notifications about the message port being invalidated.
-	RunBlockThreaded(^(void) {
-		if (gMessagePort == NULL) {
-			printf("Listening to udp port 9000 (Ctr-C to exit).\n");
-		} else {
-			printf("Running in GUI mode.\n");
-		}
-		pcap_loop(handle, -1, Handler, NULL);
-		pcap_close(handle);
-	});
+	void *buffer[buffer_size];
+	queue_t queue = QUEUE_INITIALIZER(buffer);
+
+	// We can't capture on the main thread because it'll block, so we need to
+	// set it up on a background thread.
+	pthread_t tproducer;
+	pthread_create(&tproducer, NULL, CaptureThread, &queue);
 
 	return true;
 }
@@ -216,15 +222,16 @@ int main(int argc, char *argv[]) {
 	// FIXME: don't hardcode "en1". Instead we should probably have it passed
 	// to us in argv.
 	if (SetupCapture("en0")) {
-		// We need to get notified when this message port gets invalidated because
-		// this is our signal by the parent process that capturing needs to stop.
-		//
-		// Since we're in CF-land and not using Mach ports directly, we need a
-		// CFRunLoop and not dispatch_main.
 		if (gMessagePort != NULL) {
+			// We need to get notified when this message port gets invalidated because
+			// this is our signal by the parent process that capturing needs to stop.
+			//
+			// Since we're in CF-land and not using Mach ports directly, we need a
+			// CFRunLoop.
 			CFMessagePortSetInvalidationCallBack(gMessagePort, MessagePortClosed);
 			CFRunLoopRun();
 		} else {
+			// We need to wait for the interuption signal (Ctrl+C), since we're running in CLI mode.
 			signal(SIGINT, InterruptionHandler);
 			while (keepRunning);
 		}

@@ -11,7 +11,6 @@
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		AC4A678A12D539ED0051B7B1 /* PrettyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC4A678912D539ED0051B7B1 /* PrettyCell.m */; };
-		D8A2272012C339AF0085FDDE /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D8A2271F12C339AF0085FDDE /* Utils.cpp */; };
 		D8A2275612C3BEA80085FDDE /* ChunkedBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D8A2275512C3BEA80085FDDE /* ChunkedBuffer.cpp */; };
 		D8A2284212C6D7990085FDDE /* IP2MIDIDocument.mm in Sources */ = {isa = PBXBuildFile; fileRef = D8A2284112C6D7990085FDDE /* IP2MIDIDocument.mm */; };
 		D8A2285B12C6F0040085FDDE /* IP2MIDIWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = D8A2285A12C6F0040085FDDE /* IP2MIDIWindowController.mm */; };
@@ -60,8 +59,6 @@
 		8D1107320486CEB800E47090 /* IP2MIDI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IP2MIDI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC4A678812D539ED0051B7B1 /* PrettyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrettyCell.h; sourceTree = "<group>"; };
 		AC4A678912D539ED0051B7B1 /* PrettyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrettyCell.m; sourceTree = "<group>"; };
-		D8A2271E12C339AF0085FDDE /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
-		D8A2271F12C339AF0085FDDE /* Utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Utils.cpp; sourceTree = "<group>"; };
 		D8A2275412C3BEA80085FDDE /* ChunkedBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChunkedBuffer.h; sourceTree = "<group>"; };
 		D8A2275512C3BEA80085FDDE /* ChunkedBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ChunkedBuffer.cpp; sourceTree = "<group>"; };
 		D8A2284012C6D7990085FDDE /* IP2MIDIDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IP2MIDIDocument.h; sourceTree = "<group>"; };
@@ -195,8 +192,6 @@
 			children = (
 				D8E9D0A512BC904000FF3450 /* main.cpp */,
 				D8FECD8512BE9A0700AF375F /* VMBuffer.h */,
-				D8A2271E12C339AF0085FDDE /* Utils.h */,
-				D8A2271F12C339AF0085FDDE /* Utils.cpp */,
 			);
 			path = CLI;
 			sourceTree = "<group>";
@@ -303,7 +298,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8E9D0A612BC904000FF3450 /* main.cpp in Sources */,
-				D8A2272012C339AF0085FDDE /* Utils.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
